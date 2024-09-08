@@ -35,6 +35,9 @@ void mostrarSiguiente(queue<Paciente> &p) { //mostrar el siguiente paciente sin 
 		temp.pop();
 		mostrarPaciente(temp.front());
 	}
+	else {
+		cout << "No hay paciente siguiente al primero de la cola.\n";
+	}
 }
 
 void mostrarCola(queue<Paciente>& p) {
