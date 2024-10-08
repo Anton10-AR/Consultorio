@@ -29,8 +29,8 @@ void mostrarPaciente(const Paciente &p) {
 	cout << "Nombre: " << p.nombre << ", Edad: " << p.edad << ", Padecimiento: " << p.padecimiento << ", Costo: " << p.costo << endl;
 }
 
-void mostrarSiguiente(queue<Paciente> &p) { //mostrar el siguiente paciente sin eliminar al primero
-	if (p.size() > 1) { //verificamos que en la cola haya más de un paciente
+void mostrarSiguiente(queue<Paciente> &p) { // Mostrar el siguiente paciente sin eliminar al primero
+	if (p.size() > 1) { // Verificamos que en la cola haya más de un paciente
 		queue<Paciente> temp = p;
 		temp.pop();
 		mostrarPaciente(temp.front());
@@ -41,7 +41,10 @@ void mostrarSiguiente(queue<Paciente> &p) { //mostrar el siguiente paciente sin 
 }
 
 void mostrarCola(queue<Paciente>& p) {
-	queue<Paciente> temp = p; //cola temporal que se usará para mostrar cada paciente
+	queue<Paciente> temp = p; // Cola temporal que se usará para mostrar cada paciente
+	if (p.empty()) {
+		cout << "La cola esta vacia.\n";
+	}
 	while (!temp.empty()) {
 		Paciente m = temp.front();
 		mostrarPaciente(m);
@@ -50,7 +53,7 @@ void mostrarCola(queue<Paciente>& p) {
 }
 
 void infoPaciente(queue<Paciente> &p, int posicion) {
-	queue<Paciente> temp = p; //cola temporal
+	queue<Paciente> temp = p; // Cola temporal
 	int i = 1;
 	bool encontrado = false;
 
@@ -81,7 +84,7 @@ void atenderPaciente(queue<Paciente> &p) {
 		Paciente siguiente = p.front();
 		cout << "Atendiendo siguiente paciente:\n";
 		mostrarPaciente(siguiente);
-		//se suma el costo al saldo y se elimina al paciente
+		// Se suma el costo al saldo y se elimina al paciente
 		saldo += siguiente.costo;
 		p.pop();
 	}
@@ -91,25 +94,25 @@ void atenderPaciente(queue<Paciente> &p) {
 }
 
 void eliminarPaciente(queue<Paciente>& p, int posicion) {
-	queue<Paciente> temp; //cola temporal para almacenar los elementos restantes
+	queue<Paciente> temp; // Cola temporal para almacenar los elementos restantes
 	int i = 1;
 	bool encontrado = false;
 
-	if (posicion < 1 || posicion >= p.size()+1) { //verificar que la posición es válida
+	if (posicion < 1 || posicion >= p.size()+1) { // verificar que la posición es válida
 		cout << "Posición no válida." << endl;
 		return;
 	}
 
-	while (!p.empty()) { //recorremos la cola original
+	while (!p.empty()) { // Recorremos la cola original
 		Paciente actual = p.front();
 		p.pop();
 
 		if (i == posicion) {
 			encontrado = true;
-			cout << "Paciente en la posición " << posicion << " eliminado de la cola." << endl; //no se agrega a la cola temporal
+			cout << "Paciente en la posición " << posicion << " eliminado de la cola." << endl; // No se agrega a la cola temporal
 		}
 		else {
-			temp.push(actual); //si no es el elemento, lo añadimos a la cola temporal
+			temp.push(actual); // Si no es el elemento, lo añadimos a la cola temporal
 		}
 		i++;
 	}
@@ -162,10 +165,10 @@ int main()
 			cin.get();
 			break;
 		case 5:
-			int posicionInfo;
+			int posicion;
 			cout << "Ingrese la posicion del paciente a buscar: ";
-			cin >> posicionInfo;
-			infoPaciente(cola, posicionInfo);
+			cin >> posicion;
+			infoPaciente(cola, posicion);
 			cout << "Oprima una tecla para continuar...\n";
 			cin.ignore();
 			cin.get();
