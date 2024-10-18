@@ -131,7 +131,7 @@ void mostrarHistorial() {
 		cout << "Historial vacio." << endl;
 	}
 	else {
-		for (Paciente& p : historial) { // contenedor = coleccion ordenada del mismo tipo de datos en la que cada elemento se almacena en una posicion especifica
+		for (Paciente &p : historial) { // contenedor = coleccion ordenada del mismo tipo de datos en la que cada elemento se almacena en una posicion especifica
 			mostrarPaciente(p);
 		}
 	}
