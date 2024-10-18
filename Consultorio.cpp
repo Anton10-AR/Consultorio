@@ -32,7 +32,7 @@ void mostrarPaciente(Paciente &p) {
 }
 
 void mostrarSiguiente(queue<Paciente> &p) { // Mostrar el siguiente paciente sin eliminar al primero
-	if (p.size() > 1) { // Verificamos que en la cola haya más de un paciente
+	if (p.size() > 1) { // Verificamos que en la cola haya mas de un paciente
 		queue<Paciente> temp = p; // Cola temporal
 		temp.pop(); // Eliminamos al primer paciente de la cola temporal
 		mostrarPaciente(temp.front()); //Mostramos al paciente siguiente
@@ -43,12 +43,12 @@ void mostrarSiguiente(queue<Paciente> &p) { // Mostrar el siguiente paciente sin
 }
 
 void mostrarCola(queue<Paciente> &p) {
-	queue<Paciente> temp = p; // Cola temporal que se usará para mostrar cada paciente
+	queue<Paciente> temp = p; // Cola temporal que se usara para mostrar cada paciente
 	if (p.empty()) {
 		cout << "La cola esta vacia.\n";
 	}
 	while (!temp.empty()) {
-		Paciente m = temp.front(); // Variable de tipo Paciente que tomará el valor del primer elemento de la cola temporal
+		Paciente m = temp.front(); // Variable de tipo Paciente que tomara el valor del primer elemento de la cola temporal
 		mostrarPaciente(m); // Mostramos este paciente en cada ciclo
 		temp.pop(); // Eliminamos este paciente de la cola temporal
 	}
@@ -56,19 +56,19 @@ void mostrarCola(queue<Paciente> &p) {
 
 void infoPaciente(queue<Paciente> &p, int posicion) {
 	queue<Paciente> temp = p; // Cola temporal
-	int i = 1; // Iniciamos el contador en 1 y no en 0 por ser la manera natural de contar números (a partir del primero == 1)
-	bool encontrado = false; // De mantenerse en "false", se mostrará un error "paciente no encontrado"
+	int i = 1; // Iniciamos el contador en 1 y no en 0 por ser la manera natural de contar numeros (a partir del primero == 1)
+	bool encontrado = false; // De mantenerse en "false", se mostrara un error "paciente no encontrado"
 
-	if (posicion < 1 || posicion >= p.size()+1) { // Manera natural de contar números en contraposición a cómo se cuenta en arrays (de 0 a .length()-1)
+	if (posicion < 1 || posicion >= p.size()+1) { // Manera natural de contar numeros en contraposicion a como se cuenta en arrays (de 0 a .length()-1)
 		cout << "Posicion no valida." << endl;
 		return;
 	}
 
 	while (!temp.empty()) {
-		Paciente actual = temp.front(); // Tomará el valor del primer elemento de la cola en cada ciclo
+		Paciente actual = temp.front(); // Tomara el valor del primer elemento de la cola en cada ciclo
 		temp.pop(); // Se elimina dicho elemento
 
-		if (i == posicion) { // Si el parámetro de posición de infoPaciente() y el contador coinciden...
+		if (i == posicion) { // Si el parametro de posicion de infoPaciente() y el contador coinciden...
 			mostrarPaciente(actual); // ...se muestra el elemento actual
 			encontrado = true; // ...y cambiamos la booleana a True
 			break;
@@ -87,7 +87,7 @@ void atenderPaciente(queue<Paciente> &p) {
 		cout << "Atendiendo siguiente paciente:\n";
 		mostrarPaciente(siguiente); // Paciente en ser atendido
 		saldo += siguiente.costo; // Se suma el costo al saldo
-		historial.push_back(siguiente); // Añadimos sus datos al historial
+		historial.push_back(siguiente); // Aniadimos sus datos al historial
 		p.pop(); // Se elimina al paciente ya atendido
 	}
 	else {
@@ -98,10 +98,10 @@ void atenderPaciente(queue<Paciente> &p) {
 void eliminarPaciente(queue<Paciente> &p, int posicion) {
 	queue<Paciente> temp; // Cola temporal para almacenar los elementos restantes
 	int i = 1;
-	bool encontrado = false; // De mantenerse en "false", se mostrará un error "paciente no encontrado"
+	bool encontrado = false; // De mantenerse en "false", se mostrara un error "paciente no encontrado"
 
-	if (posicion < 1 || posicion >= p.size()+1) { // verificar que la posición es válida (manera natural de contar números)
-		cout << "Posición no válida." << endl;
+	if (posicion < 1 || posicion >= p.size()+1) { // verificar que la posicion es valida (manera natural de contar numeros)
+		cout << "Posicion no valida." << endl;
 		return;
 	}
 
@@ -109,29 +109,29 @@ void eliminarPaciente(queue<Paciente> &p, int posicion) {
 		Paciente actual = p.front(); // primer elemento de la cola temporal
 		p.pop(); // Se elimina dicho elemento
 
-		if (i == posicion) { // Si el parámetro de posición de eliminarPaciente() y el contador coinciden...
+		if (i == posicion) { // Si el parametro de posicion de eliminarPaciente() y el contador coinciden...
 			encontrado = true;
-			cout << "Paciente en la posición " << posicion << " eliminado de la cola." << endl; // ...no se agrega a la cola temporal
+			cout << "Paciente en la posicion " << posicion << " eliminado de la cola." << endl; // ...no se agrega a la cola temporal
 		}
 		else {
-			temp.push(actual); // Si no coinciden, añadimos el elemento a la cola temporal
+			temp.push(actual); // Si no coinciden, aniadimos el elemento a la cola temporal
 		}
 		i++;
 	}
 
 	if (!encontrado) {
-		cout << "Paciente en la posición " << posicion << " no encontrado en la cola." << endl;
+		cout << "Paciente en la posicion " << posicion << " no encontrado en la cola." << endl;
 	}
 
-	p = temp; // Reemplazamos la cola original por la cola temporal (que no contendrá el elemento eliminado, si se hubiese hallado)
+	p = temp; // Reemplazamos la cola original por la cola temporal (que no contendra el elemento eliminado, si se hubiese hallado)
 }
 
 void mostrarHistorial() {
 	if (historial.empty()) {
-		cout << "Historial vacío." << endl;
+		cout << "Historial vacio." << endl;
 	}
 	else {
-		for (Paciente& p : historial) { // contenedor = colección ordenada del mismo tipo de datos en la que cada elemento se almacena en una posición específica
+		for (Paciente& p : historial) { // contenedor = coleccion ordenada del mismo tipo de datos en la que cada elemento se almacena en una posicion especifica
 			mostrarPaciente(p);
 		}
 	}
@@ -152,7 +152,7 @@ int main()
 		cout << "5. Buscar paciente por posicion en cola.\n";
 		cout << "6. Eliminar paciente por posicion en cola.\n";
 		cout << "7. Consultar saldo.\n";
-		cout << "8. Consultar historial de atención.\n";
+		cout << "8. Consultar historial de atencion.\n";
 		cout << "9. Salir.\n\n";
 		cout << "Opcion (1-9): ";
 		cin >> op;
