@@ -3,7 +3,8 @@
 #include <list>
 using namespace std;
 
-struct Paciente {
+class Paciente {
+public:
 	string nombre;
 	int edad;
 	string padecimiento;
