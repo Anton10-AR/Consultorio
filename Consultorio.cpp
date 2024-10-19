@@ -11,9 +11,6 @@ public:
 	float costo;
 };
 
-float saldo = 0;
-list<Paciente> historial;
-
 void ingresarDatos(queue<Paciente> &cola) {
 	Paciente p;
 	cout << "Ingrese los datos del paciente:\n";
@@ -82,7 +79,7 @@ void infoPaciente(queue<Paciente> &p, int posicion) {
 	}
 }
 
-void atenderPaciente(queue<Paciente> &p) {
+void atenderPaciente(queue<Paciente> &p, list<Paciente> &historial, float &saldo) {
 	if (!p.empty()) {
 		Paciente siguiente = p.front(); // Por "siguiente" se entiende el paciente actual en ser atendido, "siguiente pase"
 		cout << "Atendiendo siguiente paciente:\n";
@@ -127,7 +124,7 @@ void eliminarPaciente(queue<Paciente> &p, int posicion) {
 	p = temp; // Reemplazamos la cola original por la cola temporal (que no contendra el elemento eliminado, si se hubiese hallado)
 }
 
-void mostrarHistorial() {
+void mostrarHistorial(list<Paciente> &historial) {
 	if (historial.empty()) {
 		cout << "Historial vacio." << endl;
 	}
@@ -141,6 +138,8 @@ void mostrarHistorial() {
 int main()
 {
 	queue<Paciente> cola;
+	float saldo = 0;
+	list<Paciente> historial;
 	int op;
 	do {
 		system("cls");
@@ -162,7 +161,7 @@ int main()
 			ingresarDatos(cola);
 			break;
 		case 2:
-			atenderPaciente(cola);
+			atenderPaciente(cola, historial, saldo);
 			cout << "Oprima una tecla para continuar...\n";
 			cin.ignore(); // Limpiar el buffer de entrada
 			cin.get();    // Esperar a que el usuario presione una tecla
@@ -204,7 +203,7 @@ int main()
 			cin.get();
 			break;
 		case 8:
-			mostrarHistorial();
+			mostrarHistorial(historial);
 			cout << "Oprima una tecla para continuar...\n";
 			cin.ignore();
 			cin.get();
